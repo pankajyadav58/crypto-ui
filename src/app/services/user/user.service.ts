@@ -15,4 +15,11 @@ export class UserService {
     .map((res:Response) => res.json());
   }
 
+  register(data:Object) {
+    const headers = new Headers({'Access-Control-Allow-Origin': '*'}); // ... Set content type to JSON 
+    const options = new RequestOptions({ headers: headers }); // Create a request option
+    return this.http.post("http://localhost:8080/api/v1" + "/auth/register", data, options)
+    .map((res:Response) => res.json());
+  }
+
 }

@@ -1,18 +1,43 @@
 
 <div class="widgets">
-        <div class="container">
-            <div class="cards">
-                <div class="card-body">
-                        
-                          
+       <div class="row">
+           <div class="col">
+                <div class="col-md-12 cardView">
+                        <div class="cardViewDiv">
+                            <span>Balance:</span><br/><br/>{{balance}}
+                        </div>
+                </div>
+           </div>
+           <div class="col"><div class="col">
+                <div class="col-md-12 cardView">
+                        <div class="cardViewDiv">
+                                <span>Total Send:</span><br/><br/>{{total_send}}
+                            </div>
+                </div>
+           </div></div>
+           <div class="col">
+               <div class="col">
+                <div class="col-md-12 cardView">
+                        <div class="cardViewDiv">
+                                <span>Total Received:</span><br/><br/>{{total_received}}
+                            </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
+            </div>
+           <div class="col"><div class="col">
+                <div class="col-md-12 cardView">
+                        <div class="cardViewDiv">
+                                <span>Final Balance:</span><br/><br/>{{final_balance}}
+                            </div>
+                </div>
+           </div></div>
+       </div>
+        <div class="row top-buffer">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <button class="btn btn-primary  btn-sm pull-right" (click)="lgModalShow()" type="button">Send</button>
+                        <span><b>Address: </b></span>{{btcAddress}}<a href="#/app/send" class="btn btn-primary  btn-sm pull-right" type="button">Send</a>
                 </div>
               </div>
+        
     <div class="row top-buffer">
         <ba-card title="Basic Example" baCardClass="with-scroll" class="data-table-container">
             <div class="row">
@@ -32,8 +57,8 @@
                         <div class="offset-sm-1 col-sm-5">
                             <div class="row">
                                 <select class="form-control input-sm" [(ngModel)]="sortBy">
-                            <option ngValue="sender">Sender</option>
-                            <option ngValue="recipient">Reeiver</option>
+                            <!-- <option ngValue="sender">Sender</option>
+                            <option ngValue="recipient">Reeiver</option> -->
                             <option ngValue="amount">Amount</option>
                         </select>
                             </div>
@@ -56,17 +81,18 @@
                 <table class="table table-striped" [mfData]="data | txFilter : filterQuery" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
                     <thead>
                         <tr>
-                            <th style="width: 30%">
-                                <mfDefaultSorter by="hash">Id</mfDefaultSorter>
+                            <th style="width: 55%">
+                                <mfDefaultSorter by="hash"><b>Transaction Hash</b></mfDefaultSorter>
                             </th>
-                            <th style="width: 25%">
-                                <mfDefaultSorter by="sender">Sender</mfDefaultSorter>
+                           
+                            <th style="width: 15%">
+                                <mfDefaultSorter by="amount"><b>Amount(fee)</b></mfDefaultSorter>
                             </th>
-                            <th style="width: 25%">
-                                    <mfDefaultSorter by="recipient">Recipient</mfDefaultSorter>
-                                </th>
                             <th style="width: 20%">
-                                <mfDefaultSorter by="amount">Amount(fee)</mfDefaultSorter>
+                                <mfDefaultSorter by="received"><b>Received</b></mfDefaultSorter>
+                            </th>
+                            <th style="width: 20%">
+                                Details
                             </th>
                            
                         </tr>
@@ -80,9 +106,9 @@
                     <tbody>
                         <tr *ngFor="let item of mf.data">
                             <td>{{item.hash}}</td>
-                            <td>{{item.sender}}</td>
-                            <td >{{item.recipient}}</td>
-                            <td>{{item.amount}}({{item.fee}})</td>
+                            <td>{{item.amount/100000000}}({{item.fee/100000000}})</td>
+                            <td>{{item.received | dateFormatFilter}}</td>
+                            <td><a [routerLink]="['/app/transaction/', item.hash]">View</a></td>
                         </tr>
                     </tbody>
                     <tfoot>

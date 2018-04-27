@@ -10,8 +10,10 @@ import { TransactionFilterPipe } from './transaction-filter.pipe';
 import { routing } from './transaction.routing';
 import { TransactionComponent } from './transaction.component';
 import {TransactionService} from './transaction.service';
-import {SendModal} from './popup/send.component';
+import {SendComponent} from './popup/send.component';
 import { NgbDropdownModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import {DateFilterPipe} from './../../filters/dateFormatFilter'
+
 
 @NgModule({
   imports: [
@@ -28,14 +30,15 @@ import { NgbDropdownModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
   declarations: [
     TransactionComponent,
     TransactionFilterPipe,
-    SendModal
+    SendComponent,
+    DateFilterPipe
 
   ],
   providers: [
     TransactionService
   ],
   entryComponents: [
-    SendModal
+    SendComponent
   ]
 })
 export class TransactionModule {

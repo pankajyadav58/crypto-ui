@@ -1,11 +1,14 @@
 import {Component} from '@angular/core';
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import {EmailValidator, EqualPasswordsValidator} from '../../theme/validators';
+import {UserService}  from './../../services/user/user.service';
+import {Router} from '@angular/router'
 
 @Component({
   selector: 'register',
   templateUrl: './register.html',
-  styleUrls: ['./register.scss']
+  styleUrls: ['./register.scss'],
+  providers: [UserService]
 })
 export class Register {
 
@@ -18,14 +21,14 @@ export class Register {
 
   public submitted:boolean = false;
 
-  constructor(fb:FormBuilder) {
+  constructor(fb:FormBuilder, private userService: UserService, private router: Router) {
 
     this.form = fb.group({
       'name': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       'email': ['', Validators.compose([Validators.required, EmailValidator.validate])],
       'passwords': fb.group({
-        'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
-        'repeatPassword': ['', Validators.compose([Validators.required, Validators.minLength(4)])]
+        'password': ['', Validators.compose([Validators.required, Validators.minLength(8)])],
+        'repeatPassword': ['', Validators.compose([Validators.required, Validators.minLength(8)])]
       }, {validator: EqualPasswordsValidator.validate('password', 'repeatPassword')})
     });
 
@@ -35,12 +38,29 @@ export class Register {
     this.password = this.passwords.controls['password'];
     this.repeatPassword = this.passwords.controls['repeatPassword'];
   }
+  userResponse:any = {};
 
-  public onSubmit(values:Object):void {
+  public onSubmit(values:any):void {
+    console.log(values);
     this.submitted = true;
     if (this.form.valid) {
-      // your code goes here
-      // console.log(values);
+      let payload = {
+        'user':{
+          'name': values.name,
+          'email': values.email,
+          'password': values.passwords.password
+
+        }
+      }
+      this.userService.register(payload).subscribe(
+        data => {
+          this.router.navigate(['/login']);
+        },
+        error => {
+          this.submitted = false;
+          console.log(error, 'error')
+        }
+    )
     }
   }
 }

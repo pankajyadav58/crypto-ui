@@ -1,0 +1,55 @@
+
+<div class="row">
+<div class="col-sm-5 col-xs-6 tital font-weight-bold" >Transaction Hash:</div><div class="col-sm-7 col-xs-6 ">{{transactionInfo?.hash}}</div>
+     <div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-sm-5 col-xs-6 tital font-weight-bold" >Amount(BTC):</div><div class="col-sm-7"> {{transactionInfo?.outputs[0]?.value/100000000}}</div>
+  <div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-sm-5 col-xs-6 tital font-weight-bold" >Transaction Fee:</div><div class="col-sm-7"> {{transactionInfo?.fees/100000000}}</div>
+  <div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-sm-5 col-xs-6 tital font-weight-bold" >Seder Address:</div><div class="col-sm-7">{{transactionInfo?.inputs[0]?.addresses[0]}}</div>
+
+  <div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-sm-5 col-xs-6 tital font-weight-bold" >Receiver Address:</div><div class="col-sm-7">{{transactionInfo?.outputs[0]?.addresses[0]}}</div>
+
+  <div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-sm-5 col-xs-6 tital font-weight-bold" >Block Hash:</div><div class="col-sm-7">{{transactionInfo?.block_hash}}</div>
+
+ <div class="clearfix"></div>
+<div class="bot-border"></div>
+<div class="col-sm-5 col-xs-6 tital font-weight-bold" >Block Height:</div><div class="col-sm-7">{{transactionInfo?.block_height}}</div>
+
+ <div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-sm-5 col-xs-6 tital font-weight-bold" >Confirmation:</div><div class="col-sm-7">{{transactionInfo?.confirmations}}</div>
+
+ <div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-sm-5 col-xs-6 tital font-weight-bold" >Received Date:</div><div class="col-sm-7">{{transactionInfo?.received}}</div>
+
+ <div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-sm-5 col-xs-6 tital font-weight-bold" >Confirmation Date:</div><div class="col-sm-7">{{transactionInfo?.confirmed}}</div>
+
+<div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-sm-5 col-xs-6 tital font-weight-bold" >Double Spend:</div><div class="col-sm-7">{{transactionInfo?.double_spend}}</div>
+<div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-sm-5 col-xs-6 tital font-weight-bold" ></div><div class="col-sm-7"><a href="#/app/transaction" class="btn btn-primary  btn-sm pull-right" type="button">Back</a></div>
+
+</div>

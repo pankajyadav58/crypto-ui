@@ -8,7 +8,7 @@ import {TransactionService} from './../transaction.service';
   templateUrl: './send.component.html'
 })
 
-export class SendModal implements OnInit {
+export class SendComponent implements OnInit {
  
   payload:any = {};
   modalHeader: string;
